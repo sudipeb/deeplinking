@@ -1,8 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "com.ebpearls.deeplinking",
-    "package_name": "com.ebpearls.deeplinking",
-    "sha256_cert_fingerprints": ["1F:59:35:68:BB:EA:FC:9E:3F:5A:35:25:B8:48:33:31:10:F0:D1:20:95:24:5B:6A:B5:4A:62:EB:93:33:80:F4"]
-  }
-}]
