@@ -6,8 +6,8 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: MyHomeRoute.page),
-    AutoRoute(page: MyProfileRoute.page),
-    AutoRoute(page: MyNotificationRoute.page),
+    AutoRoute(page: MyProfileRoute.page,path: "/profile",initial: true,),
+    AutoRoute(page: MyHomeRoute.page, path: "/home"),
+    AutoRoute(page: MyNotificationRoute.page,path: "/notification"),
   ];
 }

@@ -8,6 +8,21 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Deeplinking</string>
+    <key>CFBundleURLTypes</key>
+        <array>
+            <dict>
+            <!-- Use your app bundle ID here -->
+            <key>CFBundleURLName</key>
+            <string>sudipeb.github.io</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+            <!-- Custom scheme for your URL -->
+            <string>my-links</string>
+        </array>
+        </dict>
+    </array>
+
+
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
