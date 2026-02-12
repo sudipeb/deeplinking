@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:app_links/app_links.dart';
 
 import 'app_router.dart';
+import 'app_router.gr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,18 +58,20 @@ class _MyAppState extends State<MyApp> {
   void _navigateWithUri(Uri uri) {
     var path = uri.path;
 
-    // If path is /deeplinking/profile, we change it to /profile
     if (path.startsWith('/deeplinking')) {
       path = path.replaceFirst('/deeplinking', '');
     }
 
-    // Prevent empty paths
-    if (path.isEmpty) path = '/';
+    if (path.isEmpty) {
+      path = '/';
+    }
 
-    final deepLink = path + (uri.hasQuery ? '?${uri.query}' : '');
-    debugPrint('Cleaned Deep Link for Router: $deepLink');
+    // Ensure leading slash
+    if (!path.startsWith('/')) {
+      path = '/$path';
+    }
 
-    _appRouter.pushPath(deepLink);
+    _appRouter.pushPath(path);
   }
 
 
@@ -81,7 +84,26 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: _appRouter.config(),
+      routerConfig: _appRouter.config(
+        deepLinkTransformer: (uri) async {
+          final path = uri.path.replaceFirst('/deeplinking', '');
+          switch (path) {
+            case '/home':
+              _appRouter.push(MyHomeRoute());
+              break;
+            case '/notification':
+              _appRouter.push(MyNotificationRoute());
+              break;
+            default:
+              _appRouter.push(MyProfileRoute());
+          }
+          // Return anything just to satisfy signature
+          return uri;
+        },
+
+
+      ),
     );
+
   }
 }
